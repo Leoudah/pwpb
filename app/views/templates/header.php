@@ -10,5 +10,5 @@
   <link rel="stylesheet" href="<?= BASEURL; ?>/css/navbar.css">
   <link rel="stylesheet" href="<?= BASEURL; ?>/css/styles.css">
 
-  <body>
+<body>
   </head>

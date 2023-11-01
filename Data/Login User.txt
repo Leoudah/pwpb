@@ -1,0 +1,11 @@
+Super Admin
+admin@gmail.com
+admin123
+
+Admin
+leo@gmail.com
+1234
+
+User
+rintohsaka@gmail.com
+1234

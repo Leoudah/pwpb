@@ -1,7 +1,3 @@
-<?php 
-session_start();
-?>
-
 <header>
     <div class="banner">
         <div class="container">
@@ -16,6 +12,11 @@ session_start();
         </div>
     </div>
 </header>
+
+<a href="<?= BASEURL ?>/login/prosesLogout">
+    LOG OUT
+</a>
+
 <section class="design" id="design">
     <div class="container">
         <div class="title">
