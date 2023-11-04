@@ -1,5 +1,5 @@
 <?php
 
-header("Location: http://localhost/travel/public/");
+header("Location: http://localhost/pwpb/public/");
 exit;
 ?>
