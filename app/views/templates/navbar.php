@@ -24,7 +24,6 @@
       <li><a href="<?= BASEURL ?>/contact" class="nav-list">Contact</a></li>
       <li>
         <?php
-
         session_start();
         if (isset($_SESSION['user_id'])) {
           // Pengguna sudah login

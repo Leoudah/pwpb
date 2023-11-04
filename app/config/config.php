@@ -1,6 +1,6 @@
 <?php
 
-define('BASEURL' , 'http://localhost/pwpb/public');
+define('BASEURL' , 'http://localhost/travel/public');
 
 //database
 define('DB_HOST', 'localhost');

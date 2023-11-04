@@ -14,12 +14,6 @@ if (isset($_POST["tambahDataUser"])) {
 }
 ?>
 
-<?php
-session_start();
-
-$_SESSION['user_role'] = $user_role;
-
-?>
 
 <header>
     <div class="container d-flex justify-content-center">

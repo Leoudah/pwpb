@@ -18,6 +18,20 @@ class Login extends Controller
         }
 
         if (isset($_POST['login'])) {
+            session_start(); // Mulai sesi di sini
+
+            if (isset($_SESSION['user_id'])) {
+                // Jika pengguna sudah login, alihkan ke halaman beranda atau halaman lain yang sesuai
+                if ($_SESSION['level'] === 'superadmin') {
+                    header('Location: ' . BASEURL . '/Superadmin');
+                } elseif ($_SESSION['level'] === 'admin') {
+                    header('Location: ' . BASEURL . '/admin');
+                } else {
+                    header('Location: ' . BASEURL);
+                }
+                exit;
+            }
+
             $this->prosesLogin();
         } else {
             $data['judul'] = 'Login';
@@ -29,21 +43,6 @@ class Login extends Controller
 
     public function registrasi()
     {
-        session_start(); // Mulai sesi di sini
-
-        if (isset($_SESSION['user_id'])) {
-            // Jika pengguna sudah login, alihkan ke halaman beranda atau halaman lain yang sesuai
-            if ($_SESSION['level'] === 'superadmin') {
-                header('Location: ' . BASEURL . '/Superadmin');
-            } elseif ($_SESSION['level'] === 'admin') {
-                header('Location: ' . BASEURL . '/admin');
-            } else {
-                header('Location: ' . BASEURL);
-            }
-            exit;
-        }
-
-
         $data['judul'] = 'Registrasi';
         $this->view('templates/header', $data);
         $this->view('login/registrasi');
@@ -72,7 +71,6 @@ class Login extends Controller
         }
     }
 
-
     public function prosesLogin()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -90,26 +88,20 @@ class Login extends Controller
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['level'] = $user['level'];
 
-
-                    if ($user['level'] === 'superadmin') {
-                        header('Location: ' . BASEURL . '/Superadmin');
-                    } elseif ($user['level'] === 'admin') {
+                    if ($user['level'] === 'admin') {
                         header('Location: ' . BASEURL . '/admin');
                     } else {
                         header('Location: ' . BASEURL);
                     }
 
-
                     exit;
                 } else {
                     $pesan = 'Password salah.';
                     $this->tampilkanPesanError($pesan);
-                    header('Location: ' . BASEURL . '/login');
                 }
             } else {
                 $pesan = 'Email tidak ditemukan.';
                 $this->tampilkanPesanError($pesan);
-                header('Location: ' . BASEURL . '/login');
             }
         }
     }

@@ -41,8 +41,8 @@ class admin extends Controller
         $this->view('Templates/footer');
     }
 
-
     //Main Function (Buy Ticket)
+
     public function addTicket()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -56,7 +56,7 @@ class admin extends Controller
 
             $image_name = $_FILES["image"]["name"];
             $tmp_image = $_FILES["image"]["tmp_name"];
-            $target_directory = $_SERVER['DOCUMENT_ROOT'] . '/pwpb/public/img/ticket/';
+            $target_directory = $_SERVER['DOCUMENT_ROOT'] . '/travel/public/img/ticket/';
             $target_file = $target_directory . $image_name;
 
             // Pastikan direktori tujuan ada
@@ -82,7 +82,7 @@ class admin extends Controller
 
             if (move_uploaded_file($tmp_image, $target_file)) {
                 // Lokasi tempat menyimpan file gambar yang diunggah
-                $lokasi_simpan = '/pwpb/public/img/ticket/' . $image_name;
+                $lokasi_simpan = '/travel/public/img/ticket/' . $image_name;
 
                 $data = [
                     'nama_trip' => $nama_trip,
@@ -105,9 +105,81 @@ class admin extends Controller
         }
     }
 
-    public function deleteTicket()
+    public function deleteTicket($trip_id)
     {
+        if ($this->model('admin_model')->hapusTrip($trip_id) > 0) {
+            header('Location: ' . BASEURL . '/admin/index');
+            exit;
+        }
     }
+
+    public function editTicket($trip_id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $nama_trip = $_POST['nama_trip'];
+            $deskripsi = $_POST['deskripsi'];
+            $tujuan = $_POST['tujuan'];
+            $start_date = $_POST['start_date'];
+            $end_date = $_POST['end_date'];
+            $harga = $_POST['harga'];
+            $slot_ticket = $_POST['slot_ticket'];
+
+            // Inisialisasi variabel gambar
+            $image = '';
+
+            // Periksa apakah pengguna memilih untuk mengunggah gambar baru
+            if (isset($_FILES['new_image']) && $_FILES['new_image']['error'] === UPLOAD_ERR_OK) {
+                // Pengguna memilih untuk mengunggah gambar baru
+                $image = $this->handleImageUpload($_FILES['new_image']);
+            } else {
+                // Pengguna tidak memilih gambar baru, gunakan gambar lama
+                $image = $_POST['old_image'];
+            }
+
+            // Panggil fungsi model untuk melakukan pembaruan
+            if ($this->model('Admin_model')->updateTrip($trip_id, $nama_trip, $deskripsi, $tujuan, $image, $start_date, $end_date, $harga, $slot_ticket)) {
+                // Redirect or show success message
+                echo 'Gagal melakukan pembaruan.';
+            } else {
+                header('Location: ' . BASEURL . '/admin/index');
+            }
+        } else {
+            // Load the form for updating the trip
+            $trip = $this->model('Admin_model')->getTripById($trip_id);
+            $data = [
+                'trip' => $trip,
+            ];
+
+            $data['judul'] = 'Edit Ticket';
+            $this->view('Templates/admin-header', $data);
+            $this->view('Templates/admin-navbar', $data);
+            $this->view('admin/edit', $data);
+            $this->view('Templates/admin-footer');
+        }
+    }
+
+
+    private function handleImageUpload($file)
+    {
+        $image_name = $file['name'];
+        $tmp_image = $file['tmp_name'];
+        $target_directory = $_SERVER['DOCUMENT_ROOT'] . '/travel/public/img/ticket/';
+        $target_file = $target_directory . $image_name;
+
+        // Handle image upload
+        if (move_uploaded_file($tmp_image, $target_file)) {
+            // Return the image path
+            return '/travel/public/img/ticket/' . $image_name;
+        } else {
+            // Return an empty string if the upload fails
+            return '';
+        }
+    }
+
+
+
+
+
 
 
     // BLOG

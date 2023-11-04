@@ -12,11 +12,6 @@
         </div>
     </div>
 </header>
-
-<a href="<?= BASEURL ?>/login/prosesLogout">
-    LOG OUT
-</a>
-
 <section class="design" id="design">
     <div class="container">
         <div class="title">

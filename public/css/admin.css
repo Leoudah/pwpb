@@ -261,7 +261,7 @@ nav i{
 
 .home_content{
     position: absolute;
-    width: 92%;
+    width: 90%;
     height: 88%;
     z-index: 1;
     transition: all 0.5s ease;
@@ -295,6 +295,11 @@ nav i{
 
 .card-img-top{
     height: 270px;
+}
+
+/* Edit Page */
+.edit-form .edit-input{
+    width: 90%;
 }
 
 @media (max-width:4000px){

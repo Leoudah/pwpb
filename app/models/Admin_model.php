@@ -11,9 +11,6 @@ class Admin_model
     }
 
 
-
-
-
     //Main Model Project (Buy Ticket)
     public function tambahkanticket($data)
     {
@@ -43,6 +40,33 @@ class Admin_model
 
         return $this->db->rowCount();
     }
+
+    public function updateTrip($trip_id, $nama_trip, $deskripsi, $tujuan, $image, $start_date, $end_date, $harga, $slot_ticket)
+    {
+        $this->db->query('UPDATE trip SET nama_trip = :nama_trip, deskripsi = :deskripsi, tujuan = :tujuan, image = :image, start_date = :start_date, end_date = :end_date, harga = :harga, slot_tiket = :slot_ticket WHERE trip_id = :trip_id');
+
+        $this->db->bind(':trip_id', $trip_id);
+        $this->db->bind(':nama_trip', $nama_trip);
+        $this->db->bind(':deskripsi', $deskripsi);
+        $this->db->bind(':tujuan', $tujuan);
+        $this->db->bind(':image', $image);
+        $this->db->bind(':start_date', $start_date);
+        $this->db->bind(':end_date', $end_date);
+        $this->db->bind(':harga', $harga);
+        $this->db->bind(':slot_ticket', $slot_ticket);
+
+        return $this->db->execute();
+    }
+
+    // Pada Admin_model.php
+    public function getTripById($trip_id)
+    {
+        $query = "SELECT * FROM trip WHERE trip_id = :trip_id";
+        $this->db->query($query);
+        $this->db->bind('trip_id', $trip_id);
+        return $this->db->single(); // Misalkan Anda menggunakan PDO
+    }
+
 
 
     //end Main Model
@@ -96,6 +120,16 @@ class Admin_model
         $query = "DELETE FROM user WHERE id = :id";
         $this->db->query($query);
         $this->db->bind(':id', $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function hapusTrip($trip_id)
+    {
+        $query = " DELETE FROM trip WHERE trip_id = :trip_id";
+        $this->db->query($query);
+        $this->db->bind(':trip_id', $trip_id);
         $this->db->execute();
 
         return $this->db->rowCount();
