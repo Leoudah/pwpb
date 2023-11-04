@@ -41,6 +41,7 @@ class admin extends Controller
         $this->view('Templates/footer');
     }
 
+
     //Main Function (Buy Ticket)
     public function addTicket()
     {
@@ -55,7 +56,7 @@ class admin extends Controller
 
             $image_name = $_FILES["image"]["name"];
             $tmp_image = $_FILES["image"]["tmp_name"];
-            $target_directory = $_SERVER['DOCUMENT_ROOT'] . '/travel/public/img/ticket/';
+            $target_directory = $_SERVER['DOCUMENT_ROOT'] . '/pwpb/public/img/ticket/';
             $target_file = $target_directory . $image_name;
 
             // Pastikan direktori tujuan ada
@@ -81,7 +82,7 @@ class admin extends Controller
 
             if (move_uploaded_file($tmp_image, $target_file)) {
                 // Lokasi tempat menyimpan file gambar yang diunggah
-                $lokasi_simpan = '/travel/public/img/ticket/' . $image_name;
+                $lokasi_simpan = '/pwpb/public/img/ticket/' . $image_name;
 
                 $data = [
                     'nama_trip' => $nama_trip,

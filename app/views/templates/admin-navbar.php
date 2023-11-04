@@ -42,6 +42,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="<?= BASEURL ?>/admin/crud">
+                            <i class="bi bi-table"></i>
+                            <span class="links_name">Tugas CRUD</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="settings.php">
                             <i class="bi bi-gear"></i>
                             <span class="links_name">Settings</span>

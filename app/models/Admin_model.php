@@ -11,33 +11,37 @@ class Admin_model
     }
 
 
+
+
+
     //Main Model Project (Buy Ticket)
     public function tambahkanticket($data)
     {
-            $query = "INSERT INTO trip (nama_trip, deskripsi, tujuan, image, start_date, end_date, harga, slot_tiket)
+        $query = "INSERT INTO trip (nama_trip, deskripsi, tujuan, image, start_date, end_date, harga, slot_tiket)
                       VALUES (:nama_trip, :deskripsi, :tujuan, :image, :start_date, :end_date, :harga, :slot_tiket)";
-            
-            $this->db->query($query);
-            $this->db->bind(':nama_trip', $data['nama_trip']);
-            $this->db->bind(':deskripsi', $data['deskripsi']);
-            $this->db->bind(':tujuan', $data['tujuan']);
-            $this->db->bind(':image', $data['image']);
-            $this->db->bind(':start_date', $data['start_date']);
-            $this->db->bind(':end_date', $data['end_date']);
-            $this->db->bind(':harga', $data['harga']);
-            $this->db->bind(':slot_tiket', $data['slot_tiket']);
-    
-            $this->db->execute();
-            
-            return $this->db->rowCount();
+
+        $this->db->query($query);
+        $this->db->bind(':nama_trip', $data['nama_trip']);
+        $this->db->bind(':deskripsi', $data['deskripsi']);
+        $this->db->bind(':tujuan', $data['tujuan']);
+        $this->db->bind(':image', $data['image']);
+        $this->db->bind(':start_date', $data['start_date']);
+        $this->db->bind(':end_date', $data['end_date']);
+        $this->db->bind(':harga', $data['harga']);
+        $this->db->bind(':slot_tiket', $data['slot_tiket']);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
     }
 
-    public function deleteTrip($id){
-        $this->db->query('DELETE FROM trip' . $this->table .'WHERE trip_id=trip_id');
+    public function deleteTrip($id)
+    {
+        $this->db->query('DELETE FROM trip' . $this->table . 'WHERE trip_id=trip_id');
         $this->db->bind('trip_id', $id);
         $this->db->execute();
 
-        return $this->db->rowCount();    
+        return $this->db->rowCount();
     }
 
 
@@ -118,7 +122,7 @@ class Admin_model
     public function activityLog($userId, $activityType)
     {
         $description = 'User dengan ID ' . $userId . ' ' . $activityType . ' menjadi ' . ($activityType === 'promote' ? 'Admin' : 'User');
-    
+
         $query = "INSERT INTO activity_log (user_id, activity_type, description) VALUES (:user_id, :activity_type, :description)";
         $this->db->query($query);
         $this->db->bind(':user_id', $userId);

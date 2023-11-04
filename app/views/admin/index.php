@@ -1,4 +1,5 @@
 <div class="home_content">
+  
   <div class="container mt-3 d-flex justify-content-between align-items-center">
     <h3>Tickets</h3>
     <div class="d-flex align-items-center">
