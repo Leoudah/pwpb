@@ -423,6 +423,10 @@ form .txt_field{
     background: #c3c3c4;
     border-radius: 5px;
   }
+
+  .user-content .container {
+    margin-top: 100px;
+  }
   
 
 /* footer style */
