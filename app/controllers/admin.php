@@ -124,6 +124,7 @@ class admin extends Controller
             $harga = $_POST['harga'];
             $slot_ticket = $_POST['slot_ticket'];
 
+            // Inisialisasi variabel gambar
             $image = '';
 
             // Periksa apakah pengguna memilih untuk mengunggah gambar baru
@@ -135,12 +136,13 @@ class admin extends Controller
                 $image = $_POST['old_image'];
             }
 
+            // Panggil fungsi model untuk melakukan pembaruan
             if ($this->model('Admin_model')->updateTrip($trip_id, $nama_trip, $deskripsi, $tujuan, $image, $start_date, $end_date, $harga, $slot_ticket)) {
+                // Redirect or show success message
                 echo 'Gagal melakukan pembaruan.';
             } else {
                 header('Location: ' . BASEURL . '/admin/index');
             }
-            
         } else {
             // Load the form for updating the trip
             $trip = $this->model('Admin_model')->getTripById($trip_id);
@@ -253,5 +255,3 @@ class admin extends Controller
         }
     }
 }
-
-

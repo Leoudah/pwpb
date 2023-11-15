@@ -30,7 +30,7 @@
             </div>
             <div class="design-item">
                 <div class="design-img">
-                    <img src="<?= BASEURL ?>/img/Kelingking Beach.jpg" alt="" class="img-fluid" height="400px">
+                    <img src="<?= BASEURL ?>/img/Kelingking-Beach.jpg" alt="" class="img-fluid" height="400px">
                     <span><i class="far fa-heart"></i> </span>
                     <span>Kelingking Beach</span>
                 </div>

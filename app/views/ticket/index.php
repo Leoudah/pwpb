@@ -1,20 +1,16 @@
-<div class="user-content">
-    <div class="container">
+<div class="header-block"></div>
+<div class="ticket">
     <?php foreach ($data['trip'] as $row) : ?>
-      <div class="col-md-4 col-sm-6 col-12 mb-4 text_right">
-        <div class="card">
-          <img src="http://localhost<?= $row['image']; ?>" class="card-img-top" alt="Image">
-          <div class="card-body">
-            <h5 class="card-title"><?= $row['nama_trip']; ?></h5>
-            <p class="card-text"><?= $row['deskripsi']; ?></p>
-            <p class="card-text"><strong>Tujuan:</strong> <?= $row['tujuan']; ?></p>
-            <p class="card-text"><strong>Tanggal Mulai:</strong> <?= $row['start_date']; ?></p>
-            <p class="card-text"><strong>Tanggal Selesai:</strong> <?= $row['end_date']; ?></p>
-            <p class="card-text"><strong>Harga:</strong> <?= $row['harga']; ?></p>
-            <p class="card-text"><strong>Slot Tiket:</strong> <?= $row['slot_tiket']; ?></p>
-          </div>
+        <div class="centers">
+            <a href="<?=BASEURL?>/ticket/buy/<?= $row['trip_id']; ?>">
+                <div class="article-card">
+                    <div class="content">
+                        <p class="date"><?= $row['start_date']; ?></p>
+                        <p class="title"><?= $row['nama_trip']; ?></p>
+                    </div>
+                    <img src="http://localhost<?= $row['image']; ?>" alt="article-cover" />
+                </div>
         </div>
-      </div>
+        </a>
     <?php endforeach; ?>
-    </div>
 </div>
