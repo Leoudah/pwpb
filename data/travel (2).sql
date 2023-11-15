@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 01, 2023 at 01:04 AM
+-- Generation Time: Nov 15, 2023 at 02:54 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -49,7 +49,9 @@ INSERT INTO `activity_log` (`id`, `user_id`, `activity_type`, `created_at`, `des
 (7, 7, 'Promote', '2023-10-25 02:00:37', 'User dengan ID 7 promote menjadi Admin'),
 (8, 7, 'Demote', '2023-10-25 02:00:45', 'User dengan ID 7 demote menjadi User'),
 (9, 1, 'Demote', '2023-10-25 04:42:17', 'User dengan ID 1 demote menjadi User'),
-(10, 7, 'Promote', '2023-10-28 12:57:08', 'User dengan ID 7 promote menjadi Admin');
+(10, 7, 'Promote', '2023-10-28 12:57:08', 'User dengan ID 7 promote menjadi Admin'),
+(11, 7, 'Demote', '2023-11-08 00:30:33', 'User dengan ID 7 demote menjadi User'),
+(12, 7, 'Promote', '2023-11-08 00:30:41', 'User dengan ID 7 promote menjadi Admin');
 
 -- --------------------------------------------------------
 
@@ -92,6 +94,26 @@ CREATE TABLE `booking` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `crud`
+--
+
+CREATE TABLE `crud` (
+  `id` int NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `crud`
+--
+
+INSERT INTO `crud` (`id`, `nama`, `tanggal_lahir`, `image`) VALUES
+(7, 'Leonardo Pramudyo Hutomo', '2023-11-10', '/pwpb/public/img/foto/Leo-image.jpeg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trip`
 --
 
@@ -112,8 +134,8 @@ CREATE TABLE `trip` (
 --
 
 INSERT INTO `trip` (`trip_id`, `nama_trip`, `deskripsi`, `tujuan`, `image`, `start_date`, `end_date`, `harga`, `slot_tiket`) VALUES
-(1, 'Nusa Penida', 'ajkH', 'Nusa Penida', '/travel/public/img/ticket/hero.jpg', '2023-10-30', '2023-10-31', 250000, 12),
-(2, 'Pantai Klingking', 'Keliling Pantai Kelingking', 'Pantai Kelingking', '/travel/public/img/ticket/kelingking beach manta spot.jpg', '2023-11-01', '2023-11-02', 125000, 12);
+(6, 'Pantai ', 'Pantai Kelingking', 'Pantai Kelingking', '/travel/public/img/ticket/kelingking-beach-manta-spot.jpg', '2023-11-08', '2023-11-09', 100000, 12),
+(7, 'Nusa Penida', 'Keliling nusa Penida ', 'Nusa Penida', '/travel/public/img/ticket/hero.jpg', '2023-11-10', '2023-11-11', 820000, 12);
 
 -- --------------------------------------------------------
 
@@ -135,7 +157,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `no_telp`, `password`, `level`) VALUES
-(1, 'Admin', 'admin@gmail.com', '0895332242540', '$2y$10$8.M9eEcQXuLONDC4DiXuYubmUEDdks9yvpgbfVZOL6.afbseJJdEC', 'superadmin'),
+(1, 'Admin', 'admin@gmail.com', '0895332242540', '$2y$10$8.M9eEcQXuLONDC4DiXuYubmUEDdks9yvpgbfVZOL6.afbseJJdEC', 'admin'),
 (3, 'Rin Tohsaka', 'rintohsaka@gmail.com', '0895332242540', '$2y$10$97EK7ov/y2AVyv71XAkjheDGWhm6jG4RyX5OVkmAL.PUEanyOTmXW', 'user'),
 (7, 'Leonardo P.H', 'leo@gmail.com', '081797911117', '$2y$10$p7yu.nESwjgQW5p/EioaQec7.ejex6M1Pjf5psdCbHMoKt6Tsokya', 'admin');
 
@@ -163,6 +185,12 @@ ALTER TABLE `booking`
   ADD KEY `trip_id` (`trip_id`);
 
 --
+-- Indexes for table `crud`
+--
+ALTER TABLE `crud`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `trip`
 --
 ALTER TABLE `trip`
@@ -182,7 +210,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -197,10 +225,16 @@ ALTER TABLE `booking`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `crud`
+--
+ALTER TABLE `crud`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `trip_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `trip_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
